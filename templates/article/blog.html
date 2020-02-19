@@ -1,0 +1,144 @@
+<!-- extends表明此页面继承自 base.html 文件 -->
+
+{% extends "base.html" %}
+{% load static %}
+
+<!-- 写入 base.html 中定义的 title -->
+{% block title %}
+    首页
+{% endblock title %}
+
+<!-- 写入 base.html 中定义的 content -->
+{% block content %}
+<div class="zhong1 bc_1">
+				<!--中1  - 轮播-->
+				<div class="lb">
+					
+				</div>
+				
+				<!--中1  -  个人-->
+				<div class="person">
+					
+				</div>
+				
+				<!--中1  -  标签-->
+				<div class="tags">
+				
+				</div>
+			</div>
+			
+			
+			<div class="spa" style="text-align: center; height: 100px; ">
+				<div style=" padding-top: 25px;">
+					<img src="{%static 'img/书.svg' %} " width="50px" >
+				</div>
+					
+			</div>
+			
+		<div class="mid">
+			<!--中1-->
+			
+			<div class="mid-left bc_6">
+				<div class="blog-classify-name">
+					<img src="{%static 'img/太阳.svg' %} " width="20px" style="padding-bottom: 3px;">
+					<span>博客分类</span>
+					<div class="blog-classify-body">
+						{% for article in articles %}
+							{% if article.column %}
+							                <button type="button" 
+							                    class="btn btn-sm mb-2
+							                        {% if article.column.title == 'CSS' %}
+							                            btn-success
+							                        {% elif article.column.title == 'JS' %}
+							                            btn-danger
+							                        {% elif article.column.title == 'HTML' %}
+							                            btn-warning
+							                        {% endif %}
+							                    "
+							                >
+							                    {{ article.column }}
+							                </button>
+							            {% endif %}
+						{% endfor %}
+					</div>
+				</div>
+				
+				<hr >
+				<div id="">
+					<img src="{%static 'img/笑脸.svg' %} " width="20px" style="padding-bottom: 3px;">
+					<span>关于博主</span>
+					<div class="blog-classify-body">
+						
+					</div>
+
+				</div>
+				<hr >
+				<div id="">
+					<img src="{%static 'img/花.svg' %} " width="20px" style="padding-bottom: 3px;">
+					<<span>标签</span>
+					<div class="blog-classify-body">
+						
+					</div>
+				</div>
+				
+			</div>
+			<!--中2-文章1-n-->
+				<div class="container mid-right">
+				    <div class="row mt-2">
+				
+				        {% for article in articles %}
+				        <!-- 文章内容 -->
+			
+							<article class="article">
+								<div id="title">
+									<h4 style="color: #555555;"><strong><a href="{% url 'article:article_details' article.id %}" class="un">{{ article.title }}</a></strong></h4>
+								</div>
+								<div id="data"><strong>
+								<img src="{%static 'img/钟.svg' %}" width="15px" height="15px"><span> {{ article.created }}</span> | 
+								<span><img src="{%static 'img/文档.svg' %}" width="15px" height="15px"> {{article.column}}</span> |
+								<span><img src="{%static 'img/眼睛.svg' %}" width="15px" height="15px"> {{article.totalviews}}</span>
+								</strong>
+									
+								</div>
+								
+								<div id="content">
+									<p>{{ article.profile|safe }}</p>
+								</div>
+								
+								<div id="more">
+									<a href="{% url 'article:article_details' article.id %}" class="btn btn-primary btn-secondary">READ MORE</a>
+								</div>
+								<div class="bk">
+									<div class="bk-dh">
+										
+									</div>
+								</div>
+							</article>
+					
+							
+				        
+						{% endfor %}
+				
+				    </div>
+				</div>
+			</div>
+		</div>
+		<!--翻页-->
+		<div class="nextpage">
+			<div class="m-auto">
+				{% if articles.has_previous %}
+				<a href="?page=1" class="btn btn-success">&laquo; 1</a><span> ... </span>
+				<a href="?page={{ articles.previous_page_number }}" class="btn btn-secondary">{{ articles.previous_page_number }}</a>
+				{% endif %}&nbsp;&nbsp;
+				<span class="btn btn-danger btn-lg">{{articles.number}}</span>
+				&nbsp;&nbsp;
+				{% if articles.has_next %}
+					<a href="?page={{articles.next_page_number}}" class="btn btn-secondary">{{articles.next_page_number}}</a><span> ... </span>
+					<a href="?page={{articles.next_page_number}}" class="btn btn-success">{{ articles.paginator.num_pages }} &raquo;</a>
+				{% endif %}
+			</div>
+			
+		</div>
+<!-- 定义放置文章标题的div容器 -->
+
+{% endblock content %}

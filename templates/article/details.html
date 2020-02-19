@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div style="height: 120px;">
+</div>
+<div id="dts">
+<article class="article-details">
+	<div id="title" >
+		<h2 style="color: #555555;"><strong>{{ article.title }}</strong></h2>
+	</div> 
+	<div id="data"><strong>
+	<img src="{%static 'img/钟.svg' %}" width="15px" height="15px"><span> {{ article.created }}</span> | 
+	<span><img src="{%static 'img/文档.svg' %}" width="15px" height="15px"> {{article.column}}</span> |
+	<span><img src="{%static 'img/眼睛.svg' %}" width="15px" height="15px"> {{article.totalviews}}</span>
+	</strong>
+		
+	</div>
+	
+	<div id="content">
+		<p>{{ article.body|safe }}...</p>
+	</div>
+	
+	<div id="more">
+		<a href="{% url 'article:article_details' article.id %}" class="btn btn-primary btn-secondary">READ MORE</a>
+	</div>
+
+</article>
+<div class="col-3 mt-4">
+            <h4><strong>目录</strong></h4>
+            <hr>
+            <div>
+                {{ toc|safe }}
+            </div>
+        </div>
+<div class="col-9">
+    <!-- 已有代码，文章正文 -->
+    <div class="col-12">
+    </div>
+
+    <!-- 发表评论 -->
+    <hr>
+        <div>
+            <form 
+                action="{% url 'comment:post_comment' article.id %}" 
+                method="POST"
+            >
+            {% csrf_token %}
+                <div class="form-group">
+                    <label for="body">
+                        <strong>
+                            我要发言：
+                        </strong>
+                    </label>
+					<br>
+					<strong>
+					    姓名:
+					</strong>
+					<textarea
+					    type="text" 
+					    class="form-control" 
+					    id="nameeee" 
+					    name="name" 
+					    rows="1"></textarea>
+						<strong>
+						    留言:
+						</strong>
+                    <textarea 
+                        type="text" 
+                        class="form-control" 
+                        id="body" 
+                        name="body" 
+                        rows="2"></textarea>
+					
+                </div>
+                <!-- 提交按钮 -->
+                <button type="submit" class="btn btn-primary ">发送</button>                    
+            </form>
+        </div>
+        <br>
+
+
+
+
+    <!-- 显示评论 -->
+    <h4>共有{{ comments.count }}条评论</h4>
+    <div>
+        {% for comment in comments %}
+            <hr>
+            <p>
+                <strong style="color: pink">
+                    {{ comment.name }}
+                </strong> 于 
+                <span style="color: green">
+                    {{ comment.created|date:"Y-m-d H:i:s" }}
+                </span> 时说：
+            </p>
+            <pre style="font-family: inherit; font-size: 1em;">
+{{ comment.body }}</pre>
+        {% endfor %}
+    </div>
+</div>
+</div>
+
+{% endblock content %}
