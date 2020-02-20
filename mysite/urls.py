@@ -24,4 +24,5 @@ urlpatterns = [
     path('article/', include('article.urls', namespace='article')),
     path('comment/', include('comment.urls', namespace='comment')),
     # path函数将url映射到视图
+
 ]
