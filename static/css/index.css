@@ -74,11 +74,7 @@ nav ul li a{
 /*背景-end*/
 
 /*中间部分-start*/
-.mid{
-	width: 80%;
-	background-color: #ffffff;
-	margin: auto;
-}
+
 /*中间部分-end*/
 
 
@@ -102,8 +98,8 @@ nav ul li a{
 	position: fixed;
 	width: 50px;
 	height: 50px;
-	top: 500px;
-	right: 0;
+	bottom: 50px;
+	right: 10px;
 }
 /*totop-end*/
 
@@ -124,22 +120,58 @@ nav ul li a{
 	-webkit-transition: width 2s ease-in-out; /* Safari 和 Chrome */
 	-o-transition: width 2s ease-in-out; /* Opera */
 }
-.mid-left{
-	float: left;
-	display: inline-block;
-	width: 30%;
-	height: auto;
-	top:0;
-	padding-top: 20px;
-	padding-left: 15px;
+@media (min-width: 700px){
+	.mid{
+		width: 80%;
+		background-color: #ffffff;
+		margin: auto;
+	}
+	.mid-left{
+		float: left;
+		display: inline-block;
+		width: 30%;
+		height: auto;
+		top:0;
+		padding-top: 20px;
+		padding-left: 15px;
+	}
+	.mid-right{
+		position: relative;
+		display: inline-block;
+		width: 69%;
+		height: auto;
+	}
+	#dts{
+		width: 80%;
+		margin: auto;
+		padding: 2%;
+		letter-spacing:1px;
+		background-color: #FFFFFF;
+	}
 }
-.mid-right{
-	position: relative;
-	display: inline-block;
-	width: 69%;
-	height: auto;
-	
-	
+
+@media (max-width: 700px){
+	.mid{
+		width: 99%;
+		background-color: #ffffff;
+		margin: auto;
+	}
+	.mid-left{
+		display: none;
+	}
+	.mid-right{
+		position: relative;
+		display: inline-block;
+		width: 100%;
+		height: auto;
+	}
+	#dts{
+		width: 99%;
+		margin: auto;
+		padding: 2%;
+		letter-spacing:1px;
+		background-color: #FFFFFF;
+	}
 }
 .article-details #title{
 	height: 60px;
@@ -151,7 +183,7 @@ nav ul li a{
 article{
 	width: 100%;
 	height: auto;
-	padding: 30px;
+	padding: 2%;
 	letter-spacing:1px;
 }
 .un,.un:link,.un:visited,.un:hover,.un:active{
@@ -175,13 +207,7 @@ article{
 	height: 200px;
 	
 }
-#dts{
-	width: 80%;
-	margin: auto;
-	padding: 30px;
-	letter-spacing:1px;
-	background-color: #FFFFFF;
-}
+
 
 #title{
 	height: 40px;
