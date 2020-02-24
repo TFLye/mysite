@@ -40,45 +40,75 @@
 			
 			<div class="container mid-left bc_6">
 				<div class="blog-classify-name">
-					<img src="{%static 'img/太阳.svg' %} " width="20px" style="padding-bottom: 3px;">
-					<span>博客分类</span>
+					<div class="Categories">
+						<img src="{%static 'img/太阳.svg' %} " width="23px" style="padding-bottom: 6px;">
+						<span>博客分类</span>
+					</div>
 					<div class="blog-classify-body">
-						{% for article in articles %}
-							{% if article.column %}
-							                <button type="button" 
-							                    class="btn btn-sm mb-2
-							                        {% if article.column.title == 'CSS' %}
-							                            btn-success
-							                        {% elif article.column.title == 'JS' %}
-							                            btn-danger
-							                        {% elif article.column.title == 'HTML' %}
-							                            btn-warning
-							                        {% endif %}
-							                    "
-							                >
-							                    {{ article.column }}
-							                </button>
-							            {% endif %}
+						
+						{% for column in columns %}
+									<a href="">
+										<div class="categories-set">
+											<div class="categories-set-box">
+												<div class="categories-set-left">
+												</div>
+												<div class="categories-set-mid">
+													<span>{{ column.title }}</span>
+												</div>
+												<div class="categories-set-right">
+													{% for key,val in column_num.items %}
+														{% if column.title == key %}
+															<span>({{ val }})</span>
+														{% endif %}
+													{% endfor %}
+												</div>
+											</div>
+										</div>
+									</a>
 						{% endfor %}
 					</div>
+					<br>
+					<hr >
 				</div>
 				
-				<hr >
-				<div id="">
-					<img src="{%static 'img/笑脸.svg' %} " width="20px" style="padding-bottom: 3px;">
-					<span>关于博主</span>
+				
+				<div class="blog-classify-name">
+					<div class="Categories">
+						<img src="{%static 'img/笑脸.svg' %} " width="23px" style="padding-bottom: 6px;">
+						<span>关于博主</span>
+					</div>
+					
 					<div class="blog-classify-body">
+						<div class="tx">
+							<img src="{%static 'img/hs.jpg' %}" width="60px">
+							<span>让我们红橙作伴活的潇潇洒洒</span>
+						</div>
 						
 					</div>
-
+					<br>
+					<hr >
 				</div>
-				<hr >
-				<div id="">
-					<img src="{%static 'img/花.svg' %} " width="20px" style="padding-bottom: 3px;">
-					<<span>标签</span>
-					<div class="blog-classify-body">
-						
+				
+				<div class="blog-classify-name">
+					<div class="Categories">
+						<img src="{%static 'img/花.svg' %} " width="23px" style="padding-bottom: 6px;">
+						<span>标签</span>
 					</div>
+					
+					<div class="blog-classify-body">
+						<div class="tags-set">
+							{% for val in tag_list %}
+										<a href="">
+											<div class="tag-set">
+												<span>{{ val }}</span>
+											</div>
+										</a>
+							{% endfor %}
+							
+						</div>
+					</div>
+					<br>
+					<hr >
 				</div>
 				
 			</div>
@@ -102,7 +132,7 @@
 								</div>
 								
 								<div id="content">
-									<p>{{ article.profile|safe }}</p>
+									<a href="{% url 'article:article_details' article.id %}" class="un"><p>{{ article.profile|safe }}</p></a>
 								</div>
 								
 								<div id="more">

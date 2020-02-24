@@ -6,4 +6,5 @@ app_name = 'comment'
 urlpatterns = [
     # 发表评论
     path('post-comment/<int:article_id>/', views.post_comment, name='post_comment'),
+    path('getqq',views.get_qq_msg,name='getqq'),
 ]

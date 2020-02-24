@@ -1,5 +1,7 @@
 asgiref==3.2.3
 Django==3.0.2
+django-ckeditor==5.9.0
+django-js-asset==1.2.2
 django-taggit==1.2.0
 Markdown==3.1.1
 pycryptodome==3.9.4

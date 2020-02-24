@@ -8,10 +8,12 @@ from taggit.managers import TaggableManager
 
 
 class ArticleColumn(models.Model):
-    title = models.CharField(max_length=50,blank=True)
+    title = models.CharField(max_length=50, blank=True)
     created = models.DateTimeField(default=timezone.now)
+
     def __str__(self):
         return self.title
+
 
 class ArticlePost(models.Model):
     # 文章作者。参数 on_delete 用于指定数据删除的方式

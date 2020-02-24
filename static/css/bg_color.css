@@ -16,3 +16,15 @@
 .bc_6{
 	background-color: #ffffff;
 }
+.bc_7{
+	background-color: #FFCC99;
+}
+.bc_7:hover{
+	background-color: #ffc095;
+}
+.bc_8{
+	background-color: #99CCCC;
+}
+.bc_8:hover{
+	background-color: #87ccbd;
+}

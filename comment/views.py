@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from article.models import ArticlePost
 from .forms import CommentForm
-
+import http.client
+import urllib
 # 文章评论
 def post_comment(request,article_id):
     article = get_object_or_404(ArticlePost, id=article_id)
@@ -23,3 +24,10 @@ def post_comment(request,article_id):
     # 处理错误请求
     else:
         return HttpResponse("发表评论仅接受POST请求。")
+
+# 通过qq号获取name
+def get_qq_msg(request):
+    # 1. 建立HTTP连接
+    res = urllib.request.urlopen("https://api.toubiec.cn/qq?qq=2320456951&size=100")
+    # print(res.read().decode("utf-8"))  # 自己解码
+    return HttpResponse(res.read().decode("utf-8"))

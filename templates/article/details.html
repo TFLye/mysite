@@ -17,7 +17,7 @@
 	</div>
 	
 	<div id="content">
-		<p>{{ article.body|safe }}...</p>
+		<p>{{ article.body|safe }}</p>
 	</div>
 	
 	<div id="more">
@@ -25,6 +25,8 @@
 	</div>
 
 </article>
+
+
 <div class="col-3 mt-4">
             <h4><strong>目录</strong></h4>
             <hr>
@@ -60,16 +62,15 @@
 					    class="form-control" 
 					    id="nameeee" 
 					    name="name" 
-					    rows="1"></textarea>
+					    rows="1"
+						></textarea>
 						<strong>
 						    留言:
 						</strong>
-                    <textarea 
-                        type="text" 
-                        class="form-control" 
-                        id="body" 
-                        name="body" 
-                        rows="2"></textarea>
+                    <div>
+                                {{ comment_form.media }}
+                                {{ comment_form.body }}
+                            </div>
 					
                 </div>
                 <!-- 提交按钮 -->
@@ -95,7 +96,7 @@
                 </span> 时说：
             </p>
             <pre style="font-family: inherit; font-size: 1em;">
-{{ comment.body }}</pre>
+					{{ comment.body|safe }}</pre>
         {% endfor %}
     </div>
 </div>
