@@ -140,7 +140,9 @@ nav ul li a{
 	}
 }
 .article-details #title{
-	height: 60px;
+	min-height: 60px;
+	*+height:100%;
+	_height:60px;
 }
 .article-details #content p{
 	font-size: 16px;
@@ -188,7 +190,9 @@ article{
 
 
 #title{
-	height: 40px;
+	min-height: 45px;
+	*+height:100%;
+	_height:45px;
 	width: 100%;
 }
 #content{
