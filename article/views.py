@@ -14,7 +14,7 @@ def article_list(request):
     # 取出所有博客文章
     articles = ArticlePost.objects.all()
     columns = ArticleColumn.objects.all()
-
+    articles_1 = articles
     for article in articles:
         article.body = markdown.markdown(article.body, extensions=[
             # 包含 缩写、表格等常用扩展
@@ -32,7 +32,7 @@ def article_list(request):
     for ct in columns:
         column_num[ct.title] = 0
     flag = True
-    for at in articles:
+    for at in articles_1:
         # 求有多少不同的标签沃日
         if flag==True:
             flag = False
